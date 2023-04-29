@@ -1,7 +1,10 @@
+import { TransactionsProvider } from "@/contexts/TransactionsContext";
+import { Transactions } from "./transactions";
+
 export default function Home() {
   return (
-   <div>
-    <h1>Hello World!</h1>
-   </div>
+    <TransactionsProvider>
+      <Transactions />
+    </TransactionsProvider>
   )
 }

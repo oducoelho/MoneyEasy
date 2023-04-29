@@ -1,0 +1,36 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2022-10-18T19:17:11.506Z"
+    },
+    {
+      "id": 2,
+      "description": "Hamburger",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 60,
+      "createdAt": "2022-10-18T19:25:11.506Z"
+    },
+    {
+      "description": "Compra de Celular",
+      "price": 1700,
+      "category": "Compra",
+      "type": "outcome",
+      "createdAt": "2022-10-18T22:14:41.352Z",
+      "id": 3
+    },
+    {
+      "description": "Putero",
+      "price": 200,
+      "category": "Comida",
+      "type": "outcome",
+      "createdAt": "2022-10-18T22:31:59.305Z",
+      "id": 4
+    }
+  ]
+}

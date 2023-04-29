@@ -28,5 +28,7 @@ export const TransactionsTable = styled('table', {
 })
 
 export const PriceHighLight = styled('span', {
-  
+  variants: {
+    
+  },
 })

@@ -8,13 +8,13 @@ import {
   PriceHighLight,
   TransactionsContainer,
   TransactionsTable,
-} from './styled'
+} from './styles'
 
 export const Transactions = () => {
   const transactions = useContextSelector(TransactionsContext, (context) => {
     return context.transactions
   })
-
+  console.log(transactions)
   return (
     <div>
       <Header />
@@ -28,7 +28,7 @@ export const Transactions = () => {
                 <tr key={transaction.description}>
                   <td width="40%">{transaction.description}</td>
                   <td>
-                    <PriceHighLight variant={transaction.type}>
+                    <PriceHighLight>
                       {transaction.type === 'outcome' && '- '}
                       {priceFormatter.format(transaction.price)}
                     </PriceHighLight>

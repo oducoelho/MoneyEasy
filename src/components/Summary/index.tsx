@@ -26,7 +26,7 @@ export const Summary = () => {
         <strong>{priceFormatter.format(summary.outcome)}</strong>
       </SummaryCard>
 
-      <SummaryCard variant={"green"}>
+      <SummaryCard>
         <header>
           <span>Total</span>
           <CurrencyDollar size={32} color="#fff" />
