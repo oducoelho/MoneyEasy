@@ -7,9 +7,11 @@ import { useContextSelector } from 'use-context-selector'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
 
 import {
+  Button,
   CloseButton,
   Content,
   Overlay,
+  Title,
   TransactionType,
   TransactionTypeButton,
 } from './styled'
@@ -59,7 +61,7 @@ export const NewTransactionModal = () => {
       <Overlay />
 
       <Content>
-        <Dialog.Title>Nova Transação</Dialog.Title>
+        <Title>Nova Transação</Title>
         <CloseButton>
           <X size={24} />
         </CloseButton>
@@ -93,12 +95,11 @@ export const NewTransactionModal = () => {
                   onValueChange={field.onChange}
                   value={field.value}
                 >
-                  <TransactionTypeButton>
-                    <ArrowCircleUp size={24} />
+                  <TransactionTypeButton value="income">
+                    <ArrowCircleUp size={24}/>
                     Entrada
                   </TransactionTypeButton>
-
-                  <TransactionTypeButton>
+                  <TransactionTypeButton value="outcome">
                     <ArrowCircleDown size={24} />
                     Saída
                   </TransactionTypeButton>
@@ -107,9 +108,9 @@ export const NewTransactionModal = () => {
             }}
           />
 
-          <button type="submit" disabled={isSubmitting}>
+          <Button type="submit" disabled={isSubmitting}>
             Cadastrar
-          </button>
+          </Button>
         </form>
       </Content>
     </Dialog.Portal>

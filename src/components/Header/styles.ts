@@ -14,7 +14,7 @@ export const HeaderContent = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'center',
 })
-export const NewTransactionButton = styled('div', {
+export const NewTransactionButton = styled('button', {
   height: '50px',
   border: 'none',
   background: '$green500',
