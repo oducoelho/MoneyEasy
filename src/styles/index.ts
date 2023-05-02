@@ -28,6 +28,7 @@ export const {
       green700: '#015F43',
     
       red300: '#F75A68',
+      red400: '#DB4437',
       red500: '#AB222E',
       red700: '#7A1921',
     },

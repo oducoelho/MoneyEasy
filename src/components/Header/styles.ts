@@ -29,3 +29,22 @@ export const NewTransactionButton = styled('button', {
     transition: '0.5s'
   }
 })
+
+export const Login = styled('div', {
+  border: '1px solid $red400',
+  padding: '10px',
+  background: '$red400',
+  borderRadius: 8,
+
+  span: {
+    color: '$white',
+    cursor: "pointer",
+    
+    h3: {
+      display: 'flex',
+      alignItems: 'center',    
+      fontSize: '13px',
+      gap: '10px'
+    }
+  },
+})
