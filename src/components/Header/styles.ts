@@ -21,7 +21,7 @@ export const NewTransactionButton = styled('button', {
   color: '$white',
   fontWeight: 'bold',
   padding: '0 1.25rem',
-  borderRadius: 6,
+  borderRadius: '6px',
   cursor: 'pointer',
 
   '&:hover': {

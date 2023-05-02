@@ -11,7 +11,7 @@ export const globalStyles = globalCss({
     fontSize: '62.5%',
   },
   body: {
-
+    backgroundColor: '$gray800'
   },
 
   'body, input, textarea, button': {

@@ -5,29 +5,39 @@ export const SummaryContainer = styled('section', {
   maxWidth: '1120px',
   margin: '0 auto',
   padding: '0 1.5rem',
+
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gap: '2rem',
+
   marginTop: '-5rem',
 })
 export const SummaryCard  = styled('div', {
   background: '$gray600',
   borderRadius: '6px',
-  padding: '2rem',
+  padding: '3rem 2rem',
 
   header: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     color: '$gray300',
+
+    span: {
+      fontSize: '16px'
+    }
   },
   strong: {
     display: 'block',
     marginTop: '1rem',
     fontSize: '2rem',
+    color: '$white'
   },
-
-  variant: {
-    background:'$green700'
+  variants: {
+    variant: {
+      green: {
+        background:'$green700'
+      }
+    }
   }
 })
