@@ -23,45 +23,35 @@ export function PrismaAdapter(
       }
     },
 
-
     async getUser(id) {
       const user = await prisma.user.findUnique({
         where: {
-          id,
-        },
+          id
+        }
       })
 
-      if (!user) {
-        return null
-      }
+      if(!user) return null
 
       return {
-        id: user.id,
-        name: user.name,
-        username: user.username,
-        email: user.email!,
-        emailVerified: null,
+        ...user,
         avatar_url: user.avatar_url!,
+        emailVerified: null
       }
     },
+    
     async getUserByEmail(email) {
       const user = await prisma.user.findUnique({
         where: {
-          email,
-        },
+          email
+        }
       })
 
-      if (!user) {
-        return null
-      }
+      if(!user) return null
 
       return {
-        id: user.id,
-        name: user.name,
-        username: user.username,
-        email: user.email!,
-        emailVerified: null,
-        avatar_url: user.avatar_url,
+        ...user,
+        avatar_url: user.avatar_url!,
+        emailVerified: null
       }
     },
 
@@ -69,50 +59,42 @@ export function PrismaAdapter(
       const account = await prisma.account.findUnique({
         where: {
           provider_provider_account_id: {
-            provider,
             provider_account_id: providerAccountId,
-          },
+            provider
+          }
         },
         include: {
-          user: true,
-        },
+          user: true
+        }
       })
 
-      if (!account) {
-        return null
-      }
+      if(!account) return null
 
       const { user } = account
 
       return {
-        id: user.id,
-        name: user.name,
-        username: user.username,
-        email: user.email!,
-        emailVerified: null,
+        ...user,
         avatar_url: user.avatar_url!,
+        emailVerified: null
       }
     },
 
     async updateUser(user) {
-      const prismaUser = await prisma.user.update({
+      const updatedUser = await prisma.user.update({
         where: {
-          id: user.id!,
+          id: user.id
         },
         data: {
           name: user.name,
           email: user.email,
-          avatar_url: user.avatar_url,
-        },
+          avatar_url: user.avatar_url
+        }
       })
 
       return {
-        id: prismaUser.id,
-        name: prismaUser.name,
-        username: prismaUser.username,
-        email: prismaUser.email!,
-        emailVerified: null,
-        avatar_url: prismaUser.avatar_url!,
+        ...updatedUser,
+        avatar_url: updatedUser.avatar_url!,
+        emailVerified: null
       }
     },
 
@@ -144,8 +126,8 @@ export function PrismaAdapter(
       })
 
       return {
-        userId,
         sessionToken,
+        userId,
         expires,
       }
     },
@@ -160,36 +142,34 @@ export function PrismaAdapter(
         },
       })
 
-      if (!prismaSession) {
-        return null
-      }
+      if (!prismaSession) return null
 
       const { user, ...session } = prismaSession
 
       return {
         session: {
-          userId: session.id,
+          userId: session.user_id,
           expires: session.expires,
           sessionToken: session.session_token,
         },
         user: {
           id: user.id,
           name: user.name,
-          username: user.username,
           email: user.email!,
-          emailVerified: null,
           avatar_url: user.avatar_url!,
+          emailVerified: null,
         },
       }
     },
+
     async updateSession({ sessionToken, userId, expires }) {
       const prismaSession = await prisma.session.update({
         where: {
           session_token: sessionToken,
         },
         data: {
-          expires,
           user_id: userId,
+          expires,
         },
       })
 

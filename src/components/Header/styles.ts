@@ -2,7 +2,7 @@ import { styled } from "@/styles";
 
 export const HeaderContainer = styled('header', {
   background: '$gray900',
-  padding: '2.5rem 0 7.5rem'
+  padding: '7rem 0 10rem'
 })
 export const HeaderContent = styled('div', {
   width: '100%',

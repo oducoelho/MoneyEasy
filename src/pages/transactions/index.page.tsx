@@ -14,7 +14,6 @@ export const Transactions = () => {
   const transactions = useContextSelector(TransactionsContext, (context) => {
     return context.transactions
   })
-  console.log(transactions)
   return (
     <div>
       <Header />

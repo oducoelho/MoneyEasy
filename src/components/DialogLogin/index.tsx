@@ -36,7 +36,10 @@ export const DialogLogin = ({ children }: LoginDialogProps) => {
         <Content>
           <span>Faça Login!</span>
         </Content>
-        <LoginOption onClick={() => signIn('google')}>
+        <LoginOption 
+          onClick={async() => {
+            signIn('google')}}
+        >
           <Image src={Google} alt="" />
           <button>Entrar com o Google</button>
         </LoginOption>
