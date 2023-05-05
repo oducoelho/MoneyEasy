@@ -1,11 +1,12 @@
-import { HeaderContainer, HeaderContent, Login, NewTransactionButton } from './styles'
+import { Avatar, HeaderContainer, HeaderContent, Logged, Login, NewTransactionButton } from './styles'
 import * as Dialog from '@radix-ui/react-dialog'
 
 import { NewTransactionModal } from '../NewTransactionModal'
 import { DialogLogin } from '../DialogLogin'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { Fragment } from 'react'
-import { GoogleLogo } from 'phosphor-react'
+import { GoogleLogo, SignOut } from 'phosphor-react'
+import { LoginDialog } from '../Logged'
 
 export const Header = () => {
   const { status, data: session } = useSession();
@@ -14,19 +15,31 @@ export const Header = () => {
 
   const RatingWrapper = isAuthenticated ? Fragment : DialogLogin
 
+  const user = session?.user;
+
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Login>
-          <span>
-            <RatingWrapper>
-              <h3>
-                <GoogleLogo size={30} color="#fff" />
-                Criar conta com o Google
-              </h3>
-            </RatingWrapper>
-          </span>
-        </Login>
+        {
+          !user
+          ?
+          (
+            <Login>
+              <span>
+                <RatingWrapper>
+                  <h3>
+                    <GoogleLogo size={30} color="#fff" />
+                    Criar conta com o Google
+                  </h3>
+                </RatingWrapper>
+              </span>
+            </Login>
+          )
+          :
+          (
+            <LoginDialog />
+          )
+        }
 
         <Dialog.Root>
           <Dialog.Trigger asChild>
