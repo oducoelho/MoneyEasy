@@ -3,8 +3,6 @@ import { X, ArrowCircleUp, ArrowCircleDown } from 'phosphor-react'
 import { useForm, Controller } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useContextSelector } from 'use-context-selector'
-import { TransactionsContext } from '../../contexts/TransactionsContext'
 
 import {
   Button,
@@ -15,6 +13,19 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styled'
+import { api } from '@/lib/axios'
+import { useState } from 'react'
+import { AxiosError } from 'axios'
+
+interface Transaction {
+  id: number
+  description: string
+  type: 'income' | 'outcome'
+  price: number
+  category: string
+  createdAt: string
+}
+
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -25,19 +36,13 @@ const newTransactionFormSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export const NewTransactionModal = () => {
-  const createTransaction = useContextSelector(
-    TransactionsContext,
-    (context) => {
-      return context.createTransaction
-    },
-  )
+  const [transactions, setTransactions] = useState<Transaction[]>([])
 
   const {
     control,
     register,
     handleSubmit,
-    formState: { isSubmitting },
-    reset,
+    formState: { errors, isSubmitting },
   } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionFormSchema),
     defaultValues: {
@@ -46,16 +51,24 @@ export const NewTransactionModal = () => {
   })
 
   const handleCreateNewTransaction = async (data: NewTransactionFormInputs) => {
-    const { description, price, category, type } = data
+    try {
+      await api.post('new_spend', {
+        description: data.description,
+        category: data.category,
+        price: data.price,
+        type: data.type,
+      })
+    }
+    catch (err){
+      if (err instanceof AxiosError && err?.response?.data?.message) {
+        alert(err.response.data.message)
+        return
+      }
 
-    await createTransaction({
-      description,
-      price,
-      category,
-      type,
-    })
-    reset()
+      console.log(err)
+    }
   }
+
   return (
     <Dialog.Portal>
       <Overlay />

@@ -23,6 +23,17 @@ model User {
   @@map("users")
 }
 
+model NewSpend {
+  id          String   @id @default(uuid())
+  description String
+  price       String
+  category    String
+  type        String
+  created_at  DateTime @default(now())
+
+  @@map("new_spend")
+}
+
 model Account {
   id                  String  @id @default(cuid())
   user_id             String

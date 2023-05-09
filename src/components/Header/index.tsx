@@ -1,7 +1,7 @@
 import { Avatar, HeaderContainer, HeaderContent, Logged, Login, NewTransactionButton } from './styles'
 import * as Dialog from '@radix-ui/react-dialog'
 
-import { NewTransactionModal } from '../NewTransactionModal'
+import { NewTransactionModal } from '../NewTransactionModal/index.api'
 import { DialogLogin } from '../DialogLogin'
 import { signOut, useSession } from 'next-auth/react'
 import { Fragment } from 'react'
