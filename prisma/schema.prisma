@@ -23,7 +23,7 @@ model User {
   @@map("users")
 }
 
-model NewSpend {
+model NewExpense {
   id          String   @id @default(uuid())
   description String
   price       String
@@ -31,7 +31,7 @@ model NewSpend {
   type        String
   created_at  DateTime @default(now())
 
-  @@map("new_spend")
+  @@map("new_expense")
 }
 
 model Account {
