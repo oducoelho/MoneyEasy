@@ -1,6 +1,9 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { X } from 'phosphor-react'
-
+import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
+import { api } from '@/lib/axios'
+import { z } from 'zod'
+import { useForm, Controller } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Button,
   CloseButton,
@@ -10,27 +13,38 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styled'
-import { api } from '@/lib/axios'
-import { useMutation } from '@tanstack/react-query'
-import { FormEvent, useState } from 'react'
+
+
+const newTransactionFormSchema = z.object({
+  description: z.string(),
+  price: z.number(),
+  category: z.string(),
+  type: z.enum(['income', 'outcome']),
+})
+
+type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
 export const NewTransactionModal = () => {
-  const [description, setDescription ] = useState("")
-  const [category, setCategory ] = useState("")
-  const [price, setPrice ] = useState("")
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<NewTransactionFormInputs>({
+    resolver: zodResolver(newTransactionFormSchema),
+    defaultValues: {
+      type: 'income',
+    },
+  })
 
-
-  const { mutateAsync: handleSpend } = useMutation(async () => {
+  async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
+    const { category, description, price, type } = data
     await api.post('/newExpense/expense', {
       description,
       category,
       price,
+      type,
     })
-  })
-
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault()
-    await handleSpend()
   }
 
   return (
@@ -41,31 +55,26 @@ export const NewTransactionModal = () => {
         <CloseButton>
           <X size={24} />
         </CloseButton>
-
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(handleCreateNewTransaction)}>
           <input
             type="text"
             placeholder="Descrição"
             required
-            value={description}
-            onChange={({ target }) => setDescription(target.value)}
+            {...register('description')}
           />
           <input
             type="text"
             placeholder="Preço"
             required
-            value={price}
-            onChange={({ target }) => setPrice(target.value)}
+            {...register('price', { valueAsNumber: true })}
           />
           <input
             type="text"
             placeholder="Categoria"
             required
-            value={category}
-            onChange={({ target }) => setCategory(target.value)}
+            {...register('category')}
           />
-
-          {/*<Controller
+          <Controller
             control={control}
             name="type"
             render={({ field }) => {
@@ -75,7 +84,7 @@ export const NewTransactionModal = () => {
                   value={field.value}
                 >
                   <TransactionTypeButton value="income">
-                    <ArrowCircleUp size={24}/>
+                    <ArrowCircleUp size={24} />
                     Entrada
                   </TransactionTypeButton>
                   <TransactionTypeButton value="outcome">
@@ -85,9 +94,8 @@ export const NewTransactionModal = () => {
                 </TransactionType>
               )
             }}
-          />*/}
-
-          <Button type="submit">
+          />
+          <Button type="submit" disabled={isSubmitting}>
             Cadastrar
           </Button>
         </form>

@@ -8,10 +8,11 @@ CREATE TABLE "users" (
 );
 
 -- CreateTable
-CREATE TABLE "new_spend" (
+CREATE TABLE "new_expense" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "name" TEXT NOT NULL,
-    "value" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "price" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

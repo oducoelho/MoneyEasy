@@ -1,33 +1,35 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { buildNextAuthOptions } from "../auth/[...nextauth].api";
-import { prisma } from "@/lib/prisma";
 import { z } from "zod";
+import { prisma } from "@/lib/prisma";
 
-const bodySchema = z.object({
-  description: z.string(),
-  category: z.string(),
-  price: z.string(),
-  type: z.string(),
-})
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-
+  
   if(req.method !== "POST") return res.status(405).end()
   
   const session = await getServerSession(
-     req,
+    req,
      res,
     buildNextAuthOptions(req, res),
   )
 
   if (!session) return res.status(401).end()
+  
+  const bodySchema = z.object({
+    description: z.string(),
+    category: z.string(),
+    price: z.string(),
+    type: z.string(),
+  })
 
-
-  const { category, description, price, type } = bodySchema.parse(req.body)
+  const { category, description, price, type } = bodySchema.parse(
+    req.body,
+  )
 
   await prisma.newExpense.create({
     data: {
