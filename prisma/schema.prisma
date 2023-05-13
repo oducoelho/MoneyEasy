@@ -19,6 +19,7 @@ model User {
 
   accounts Account[]
   sessions Session[]
+  newexpense NewExpense[]
 
   @@map("users")
 }
@@ -26,10 +27,14 @@ model User {
 model NewExpense {
   id          String   @id @default(uuid())
   description String
-  price       String
+  price       Int
   category    String
   type        String
   created_at  DateTime @default(now())
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  @@index([user_id])
 
   @@map("new_expense")
 }

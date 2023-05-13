@@ -11,7 +11,7 @@ CREATE TABLE "users" (
 CREATE TABLE "new_expense" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "description" TEXT NOT NULL,
-    "price" TEXT NOT NULL,
+    "price" INTEGER NOT NULL,
     "category" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP

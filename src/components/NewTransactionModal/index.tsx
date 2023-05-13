@@ -13,6 +13,7 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styled'
+import { useRouter } from 'next/router'
 
 
 const newTransactionFormSchema = z.object({
@@ -37,9 +38,12 @@ export const NewTransactionModal = () => {
     },
   })
 
+  const router = useRouter()
+  const username = String(router.query.username)
+
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
     const { category, description, price, type } = data
-    await api.post('/newExpense/expense', {
+    await api.post(`/newExpense/${username}/expense`, {
       description,
       category,
       price,
