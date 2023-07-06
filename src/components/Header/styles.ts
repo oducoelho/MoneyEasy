@@ -1,8 +1,8 @@
-import { styled } from "@/styles";
+import { styled } from '@/styles'
 
 export const HeaderContainer = styled('header', {
   background: '$gray900',
-  padding: '7rem 0 10rem'
+  padding: '7rem 0 10rem',
 })
 export const HeaderContent = styled('div', {
   width: '100%',
@@ -26,8 +26,8 @@ export const NewTransactionButton = styled('button', {
 
   '&:hover': {
     background: '$green700',
-    transition: '0.5s'
-  }
+    transition: '0.5s',
+  },
 })
 
 export const Login = styled('div', {
@@ -38,31 +38,30 @@ export const Login = styled('div', {
 
   span: {
     color: '$white',
-    cursor: "pointer",
-    
+    cursor: 'pointer',
+
     h3: {
       display: 'flex',
-      alignItems: 'center',    
+      alignItems: 'center',
       fontSize: '13px',
-      gap: '10px'
-    }
+      gap: '10px',
+    },
   },
 })
 export const Logged = styled('div', {
-  display: "flex",
-  alignItems: "center",
+  display: 'flex',
+  alignItems: 'center',
   background: 'transparent',
   borderRadius: 0,
   div: {
-    cursor: "pointer",
-  }
-
+    cursor: 'pointer',
+  },
 })
 
 export const Avatar = styled('img', {
-  borderRadius: "100%",
-  objectFit: "cover",
-  width: "40px",
-  height: "40px",
-  border: '3px solid $gray500'
+  borderRadius: '100%',
+  objectFit: 'cover',
+  width: '40px',
+  height: '40px',
+  border: '3px solid $gray500',
 })

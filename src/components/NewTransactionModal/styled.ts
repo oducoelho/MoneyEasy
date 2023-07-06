@@ -1,4 +1,4 @@
-import { styled } from "@/styles";
+import { styled } from '@/styles'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
@@ -36,8 +36,8 @@ export const Content = styled(Dialog.Content, {
     },
 
     '&:placeholder': {
-      color: '$gray500'
-    }
+      color: '$gray500',
+    },
   },
 })
 export const Title = styled(Dialog.Title, {
@@ -57,13 +57,13 @@ export const Button = styled('button', {
 
   '&:disabled': {
     opacity: '0.6',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   '&:not(:disabled):hover': {
     background: '$green700',
     transition: '0.2s',
-  }
+  },
 })
 export const CloseButton = styled(Dialog.Close, {
   position: 'absolute',
@@ -105,9 +105,7 @@ export const TransactionTypeButton = styled(RadioGroup.Item, {
     '&:focus': { boxShadow: `0 0 0 2px black` },
 
     svg: {
-      color: '$white'
-    }
+      color: '$white',
+    },
   },
-  
-
 })

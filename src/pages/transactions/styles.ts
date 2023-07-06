@@ -1,4 +1,4 @@
-import { styled } from "@/styles";
+import { styled } from '@/styles'
 
 export const TransactionsContainer = styled('main', {
   width: '100%',
@@ -18,17 +18,15 @@ export const TransactionsTable = styled('table', {
 
     '&:first-child': {
       borderTopLeftRadius: 6,
-      borderBottomLeftRadius: 6
+      borderBottomLeftRadius: 6,
     },
     '&:last-child': {
       borderTopRightRadius: 6,
-      borderBottomRightRadius: 6
-    }
-  }
+      borderBottomRightRadius: 6,
+    },
+  },
 })
 
 export const PriceHighLight = styled('span', {
-  variants: {
-    
-  },
+  variants: {},
 })

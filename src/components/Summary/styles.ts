@@ -1,4 +1,4 @@
-import { styled } from "@/styles";
+import { styled } from '@/styles'
 
 export const SummaryContainer = styled('section', {
   width: '100%',
@@ -12,7 +12,7 @@ export const SummaryContainer = styled('section', {
 
   marginTop: '-5rem',
 })
-export const SummaryCard  = styled('div', {
+export const SummaryCard = styled('div', {
   background: '$gray600',
   borderRadius: '6px',
   padding: '3rem 2rem',
@@ -24,20 +24,20 @@ export const SummaryCard  = styled('div', {
     color: '$gray300',
 
     span: {
-      fontSize: '16px'
-    }
+      fontSize: '16px',
+    },
   },
   strong: {
     display: 'block',
     marginTop: '1rem',
     fontSize: '2rem',
-    color: '$white'
+    color: '$white',
   },
   variants: {
     variant: {
       green: {
-        background:'$green700'
-      }
-    }
-  }
+        background: '$green700',
+      },
+    },
+  },
 })

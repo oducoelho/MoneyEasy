@@ -1,4 +1,4 @@
-import { styled } from "@/styles";
+import { styled } from '@/styles'
 
 export const SearchFormContainer = styled('form', {
   display: 'flex',
@@ -39,6 +39,6 @@ export const SearchFormContainer = styled('form', {
       background: '$green500',
       border: '$green500',
       color: '$white',
-    }
-  }
+    },
+  },
 })

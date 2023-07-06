@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src --ext .ts --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
@@ -30,6 +30,6 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "prisma": "^4.13.0"
+    "@rocketseat/eslint-config": "^1.2.0"
   }
 }

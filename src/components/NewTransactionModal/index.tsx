@@ -13,8 +13,17 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styled'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
+/*
+AQUI SERÁ A CONEXÃO COM A API
+AQUI SERÁ A CONEXÃO COM A API
+AQUI SERÁ A CONEXÃO COM A API
+AQUI SERÁ A CONEXÃO COM A API
+AQUI SERÁ A CONEXÃO COM A API
+AQUI SERÁ A CONEXÃO COM A API
+AQUI SERÁ A CONEXÃO COM A API
+*/
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -25,7 +34,7 @@ const newTransactionFormSchema = z.object({
 
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
-export const NewTransactionModal = () => {
+export const NewTransactionModal = (data: NewTransactionFormInputs) => {
   const {
     control,
     register,
@@ -38,17 +47,20 @@ export const NewTransactionModal = () => {
     },
   })
 
-  const router = useRouter()
-  const username = String(router.query.username)
+  // const router = useRouter()
+  // const userId = router.query.id as string
 
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    const { category, description, price, type } = data
-    await api.post(`/newExpense/${username}/expense`, {
+    const { description, price, type, category } = data
+    await api.post(`transactions`, {
       description,
       category,
       price,
       type,
     })
+
+    // eslint-disable-next-line no-undef
+    alert('Transação inserida com sucesso')
   }
 
   return (

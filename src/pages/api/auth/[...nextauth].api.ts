@@ -1,7 +1,7 @@
-import { PrismaAdapter } from "@/lib/auth/prisma-adpater"
-import { NextApiRequest, NextApiResponse } from "next"
-import NextAuth, { NextAuthOptions } from "next-auth"
-import GoogleProvider, { GoogleProfile } from "next-auth/providers/google"
+import { PrismaAdapter } from '@/lib/auth/prisma-adpater'
+import { NextApiRequest, NextApiResponse } from 'next'
+import NextAuth, { NextAuthOptions } from 'next-auth'
+import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 
 export function buildNextAuthOptions(
   req: NextApiRequest,
@@ -32,7 +32,7 @@ export function buildNextAuthOptions(
           user,
         }
       },
-    }
+    },
   }
 }
 

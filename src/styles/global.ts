@@ -1,4 +1,4 @@
-import { globalCss } from ".";
+import { globalCss } from '.'
 
 export const globalStyles = globalCss({
   '*': {
@@ -11,7 +11,7 @@ export const globalStyles = globalCss({
     fontSize: '62.5%',
   },
   body: {
-    backgroundColor: '$gray800'
+    backgroundColor: '$gray800',
   },
 
   'body, input, textarea, button': {
@@ -22,11 +22,11 @@ export const globalStyles = globalCss({
   '@media (max-width: 1440px)': {
     html: {
       fontSize: '50%',
-    }
+    },
   },
   '@media (max-width: 1024px)': {
     html: {
       fontSize: '50%',
-    }
+    },
   },
 })

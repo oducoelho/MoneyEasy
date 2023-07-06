@@ -19,9 +19,7 @@ export const SearchForm = () => {
     resolver: zodResolver(searchFormSchema),
   })
 
-  const handleSearchTransactions = async (data: SearchFormInputs) => {
-    
-  }
+  const handleSearchTransactions = async (data: SearchFormInputs) => {}
 
   return (
     <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>
