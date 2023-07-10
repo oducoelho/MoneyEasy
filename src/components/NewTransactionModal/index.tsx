@@ -1,6 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
-import { api } from '@/lib/axios'
 import { z } from 'zod'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,17 +12,7 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from './styled'
-// import { useRouter } from 'next/router'
-
-/*
-AQUI SERÁ A CONEXÃO COM A API
-AQUI SERÁ A CONEXÃO COM A API
-AQUI SERÁ A CONEXÃO COM A API
-AQUI SERÁ A CONEXÃO COM A API
-AQUI SERÁ A CONEXÃO COM A API
-AQUI SERÁ A CONEXÃO COM A API
-AQUI SERÁ A CONEXÃO COM A API
-*/
+// import { prisma } from '../../lib/prisma'
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -34,6 +23,7 @@ const newTransactionFormSchema = z.object({
 
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>
 
+// ver se realmente preciso disso na função
 export const NewTransactionModal = (data: NewTransactionFormInputs) => {
   const {
     control,
@@ -47,20 +37,17 @@ export const NewTransactionModal = (data: NewTransactionFormInputs) => {
     },
   })
 
-  // const router = useRouter()
-  // const userId = router.query.id as string
-
   async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-    const { description, price, type, category } = data
-    await api.post(`transactions`, {
-      description,
-      category,
-      price,
-      type,
+    const { category, description, price, type } = data
+    const newTransaction = await prisma.newExpense.create({
+      data: {
+        description,
+        price,
+        category,
+        type,
+      },
     })
-
-    // eslint-disable-next-line no-undef
-    alert('Transação inserida com sucesso')
+    console.log('Transação inserida com sucesso', newTransaction)
   }
 
   return (

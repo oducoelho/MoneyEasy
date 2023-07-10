@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'https://money-easy-api.onrender.com',
+  baseURL: 'https://localhost:3000',
 })

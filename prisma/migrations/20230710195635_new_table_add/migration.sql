@@ -14,7 +14,9 @@ CREATE TABLE "new_expense" (
     "price" INTEGER NOT NULL,
     "category" TEXT NOT NULL,
     "type" TEXT NOT NULL,
-    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "user_id" TEXT NOT NULL,
+    CONSTRAINT "new_expense_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -45,6 +47,9 @@ CREATE TABLE "sessions" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
+CREATE INDEX "new_expense_user_id_idx" ON "new_expense"("user_id");
 
 -- CreateIndex
 CREATE INDEX "accounts_user_id_idx" ON "accounts"("user_id");
